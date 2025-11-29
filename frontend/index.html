@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Task Analyzer</h1>
+            <p>Prioritize your work with algorithm-driven scoring.</p>
+        </header>
+
+        <main class="grid-layout">
+            <section class="input-panel">
+                <h2>Add Tasks</h2>
+                
+                <div class="input-tabs">
+                    <button class="tab-btn active" onclick="showInput('form')">Manual Entry</button>
+                    <button class="tab-btn" onclick="showInput('json')">Paste JSON</button>
+                </div>
+
+                <div id="form-input" class="input-content">
+                    <form id="task-form">
+                        <div class="form-group">
+                            <label>Task Title</label>
+                            <input type="text" id="title" required placeholder="e.g., Fix login bug">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Due Date</label>
+                                <input type="date" id="due_date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Est. Hours</label>
+                                <input type="number" id="hours" min="0.5" step="0.5" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Importance (1-10)</label>
+                            <input type="range" id="importance" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+                            <output>5</output>
+                        </div>
+                        <button type="submit" class="btn-primary">+ Add to List</button>
+                    </form>
+                </div>
+
+                <div id="json-input" class="input-content hidden">
+                    <textarea id="json-text" placeholder='[{"title": "Task A", "due_date": "2025-11-30", ...}]'></textarea>
+                    <button id="load-json-btn" class="btn-secondary">Load JSON</button>
+                </div>
+
+                <div class="staging-area">
+                    <h3>Tasks to Analyze (<span id="count">0</span>)</h3>
+                    <ul id="staging-list"></ul>
+                    <button id="analyze-btn" class="btn-action">Analyze Tasks</button>
+                </div>
+            </section>
+
+            <section class="results-panel">
+                <div class="results-header">
+                    <h2>Prioritized Tasks</h2>
+                    <div class="sort-controls">
+                        <label>Strategy:</label>
+                        <select id="sort-strategy">
+                            <option value="smart">Smart Balance</option>
+                            <option value="deadline">Deadline Driven</option>
+                            <option value="impact">High Impact</option>
+                            <option value="fastest">Fastest Wins</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="results-list" class="task-list">
+                    <div class="empty-state">Add tasks and click Analyze to see results.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
