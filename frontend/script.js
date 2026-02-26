@@ -1,3 +1,6 @@
+// API Configuration - Change this URL after deploying your backend
+const API_URL = 'http://127.0.0.1:8000';
+
 // State to hold tasks before and after analysis
 let stagingTasks = [];
 let analyzedTasks = [];
@@ -60,8 +63,7 @@ document.getElementById('analyze-btn').addEventListener('click', async () => {
             'fastest': 'quick_wins'
         };
         
-        // NOTE: Ensure your Django server is running on localhost:8000
-        const response = await fetch('http://127.0.0.1:8000/api/tasks/analyze/', {
+        const response = await fetch(`${API_URL}/api/tasks/analyze/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -111,7 +113,7 @@ sortSelect.addEventListener('change', async () => {
                 'fastest': 'quick_wins'
             };
             
-            const response = await fetch('http://127.0.0.1:8000/api/tasks/analyze/', {
+            const response = await fetch(`${API_URL}/api/tasks/analyze/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
