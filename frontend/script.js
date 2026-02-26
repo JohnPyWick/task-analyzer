@@ -1,5 +1,5 @@
 // API Configuration - Change this URL after deploying your backend
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = 'https://task-analyzer-j76s.onrender.com';
 
 // State to hold tasks before and after analysis
 let stagingTasks = [];
